@@ -1,0 +1,14 @@
+{
+  "name": "laboratorio-web-app",
+  "version": "1.0.0",
+  "description": "Proyecto desarrollado para la materia Laboratorio de Aplicaciones Web Cliente de la Tecnicatura Superior en Desarrollo de Software cursada en el Instituto Superior Tecnológico Empresarial Argentino",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anahí Foresi",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.6"
+  }
+}
