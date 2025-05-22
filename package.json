@@ -2,13 +2,24 @@
   "name": "laboratorio-web-app",
   "version": "1.0.0",
   "description": "Proyecto desarrollado para la materia Laboratorio de Aplicaciones Web Cliente de la Tecnicatura Superior en Desarrollo de Software cursada en el Instituto Superior Tecnológico Empresarial Argentino",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "build-and-deploy": "npm run build && npm run deploy"
   },
   "author": "Anahí Foresi",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.3.6"
+    "@reduxjs/toolkit": "^2.8.2",
+    "bootstrap": "^5.3.6",
+    "bootswatch": "^5.3.6",
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "sass": "^1.89.0",
+    "vite": "^6.3.5"
   }
 }
