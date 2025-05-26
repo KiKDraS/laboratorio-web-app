@@ -29,8 +29,8 @@
     </header>
 
     <!-- Carrito como aside semántico -->
-    <aside class="offcanvas offcanvas-end d-flex flex-column pb-3" tabindex="-1" id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel" aria-modal="true" role="dialog">
+    <dialog class="offcanvas offcanvas-end d-flex flex-column pb-3" tabindex="-1" id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel" aria-modal="true">
         <header class="offcanvas-header">
             <h2 id="offcanvasRightLabel" class="offcanvas-title h4">Carrito</h2>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
@@ -47,7 +47,8 @@
                     <h3 id="product1-title" class="text-primary h5">Samsung Galaxy M11 64GB</h3>
                     <p class="price fw-bold">$799</p>
 
-                    <div class="d-flex align-items-center" role="group" aria-label="Cantidad del producto">
+                    <fieldset class="d-flex align-items-center" aria-label="Cantidad del producto"
+                        style="border:0; padding:0; margin:0;">
                         <span class="fw-bold me-2 pe-3">$799</span>
                         <div class="def-number-input number-input">
                             <button onclick="alert('Restar uno al producto')" class="minus"
@@ -61,7 +62,7 @@
                             onclick="alert('Eliminar producto del carrito')" aria-label="Eliminar producto">
                             <i class="bi bi-trash-fill" aria-hidden="true"></i>
                         </button>
-                    </div>
+                    </fieldset>
                 </div>
             </article>
         </section>
@@ -78,97 +79,101 @@
                 <i class="bi bi-cart" aria-hidden="true"></i>
             </button>
         </footer>
-    </aside>
+        </aside>
 
-    <!-- Contenido principal -->
-    <main id="main" class="main-content p-3 d-flex flex-column gap-5">
-        <!-- Búsqueda -->
-        <form role="search" class="input-group rounded">
-            <label for="searchInput" class="visually-hidden">Buscar productos</label>
-            <input type="search" id="searchInput" class="form-control rounded" placeholder="Buscar"
-                aria-label="Buscar productos" />
-            <button type="submit" class="input-group-text border-0" aria-label="Buscar">
-                <i class="bi bi-search" aria-hidden="true"></i>
-            </button>
-        </form>
+        <!-- Contenido principal -->
+        <main id="main" class="main-content p-3 d-flex flex-column gap-5">
+            <!-- Búsqueda -->
+            <form role="search" class="input-group rounded">
+                <label for="searchInput" class="visually-hidden">Buscar productos</label>
+                <input type="search" id="searchInput" class="form-control rounded" placeholder="Buscar"
+                    aria-label="Buscar productos" />
+                <button type="submit" class="input-group-text border-0" aria-label="Buscar">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                </button>
+            </form>
 
-        <!-- Listado de productos -->
-        <section class="row" aria-label="Productos disponibles">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <article class="card hover-clickable" data-bs-toggle="modal" data-bs-target="#productModal"
-                    aria-labelledby="product1-modal-title" tabindex="0">
-                    <figure class="bg-image hover-zoom m-0">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                            class="w-100" alt="Producto ejemplo" />
-                        <div class="hover-overlay">
-                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                        </div>
-                    </figure>
-                    <div class="card-body">
-                        <h3 class="card-title h4 mb-3" id="product1-modal-title">Nombre del producto</h3>
-                        <p class="mb-3 price fw-bold">$799</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Modal de producto -->
-        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <header class="modal-header">
-                        <h2 id="productModalLabel" class="modal-title h5">Nombre del producto</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Cerrar modal"></button>
-                    </header>
-
-                    <section class="modal-body" aria-labelledby="productModalLabel">
-                        <figure class="text-center">
+            <!-- Listado de productos -->
+            <section class="row" aria-label="Productos disponibles">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <article class="card hover-clickable" data-bs-toggle="modal" data-bs-target="#productModal"
+                        aria-labelledby="product1-modal-title">
+                        <figure class="bg-image hover-zoom m-0">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                                class="img-fluid mb-3" alt="Vista detallada del producto" />
-                            <figcaption class="visually-hidden">Imagen ampliada del producto</figcaption>
+                                class="w-100" alt="Producto ejemplo" />
+                            <div class="hover-overlay">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </div>
                         </figure>
-                        <p>Descripción detallada del producto aquí...</p>
-                    </section>
+                        <div class="card-body">
+                            <h3 class="card-title h4 mb-3" id="product1-modal-title">Nombre del producto</h3>
+                            <p class="mb-3 price fw-bold">$799</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-                    <footer class="modal-footer">
-                        <form class="row g-3">
-                            <div class="col-12 col-md-6">
-                                <div class="d-flex align-items-center" role="group" aria-label="Cantidad">
-                                    <button type="button" class="btn btn-outline-primary me-2"
-                                        onclick="alert('Restar uno al producto')" aria-label="Reducir cantidad">
-                                        <i class="bi bi-dash-lg" aria-hidden="true"></i>
-                                    </button>
+            <!-- Modal de producto -->
+            <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <header class="modal-header">
+                            <h2 id="productModalLabel" class="modal-title h5">Nombre del producto</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cerrar modal"></button>
+                        </header>
 
-                                    <div class="form-outline">
-                                        <label for="modalQuantity" class="visually-hidden">Cantidad</label>
-                                        <input id="modalQuantity" min="1" name="quantity" value="1" type="number"
-                                            class="form-control" />
-                                    </div>
+                        <section class="modal-body" aria-labelledby="productModalLabel">
+                            <figure class="text-center">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                                    class="img-fluid mb-3" alt="Vista detallada del producto" />
+                                <figcaption class="visually-hidden">Imagen ampliada del producto</figcaption>
+                            </figure>
+                            <p>Descripción detallada del producto aquí...</p>
+                        </section>
 
-                                    <button type="button" class="btn btn-outline-primary ms-2"
-                                        onclick="alert('Sumar uno al producto')" aria-label="Aumentar cantidad">
-                                        <i class="bi bi-plus-lg" aria-hidden="true"></i>
-                                    </button>
+                        <footer class="modal-footer">
+                            <form class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <fieldset class="d-flex align-items-center" aria-label="Cantidad"
+                                        style="border:0; padding:0; margin:0;">
+                                        <button type="button" class="btn btn-outline-primary me-2"
+                                            onclick="alert('Restar uno al producto')" aria-label="Reducir cantidad">
+                                            <i class="bi bi-dash-lg" aria-hidden="true"></i>
+                                        </button>
+
+                                        <div class="form-outline">
+                                            <label for="modalQuantity" class="visually-hidden">Cantidad</label>
+                                            <input id="modalQuantity" min="1" name="quantity" value="1" type="number"
+                                                class="form-control" />
+                                        </div>
+
+                                        <button type="button" class="btn btn-outline-primary ms-2"
+                                            onclick="alert('Sumar uno al producto')" aria-label="Aumentar cantidad">
+                                            <i class="bi bi-plus-lg" aria-hidden="true"></i>
+                                        </button>
+                                    </fieldset>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6 d-flex justify-content-end gap-2">
-                                <button type="submit" class="btn btn-success">Añadir al carrito</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </form>
-                    </footer>
+                                <div class="col-12 col-md-6 d-flex justify-content-end gap-2">
+                                    <button type="submit" class="btn btn-success">Añadir al carrito</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        </footer>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <!-- Pie de página -->
-    <footer class="d-flex justify-content-center p-2 bg-black">
-        <p class="text-white m-0">&copy; <time datetime="2023">2023</time> Mi Tienda. Todos los derechos reservados.</p>
-    </footer>
+        <!-- Pie de página -->
+        <footer class="d-flex justify-content-center p-2 bg-black">
+            <p class="text-white m-0">&copy; <time datetime="2023">2023</time> Mi Tienda. Todos los derechos reservados.
+            </p>
+        </footer>
 
-    <script type="module" src="/src/index.js"></script>
+        <script type="module" src="/src/index.js"></script>
 </body>
 
 </html>
