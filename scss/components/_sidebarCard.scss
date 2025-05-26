@@ -8,6 +8,7 @@
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
+  text-align: center;
 }
 
 .number-input input[type="number"]::-webkit-inner-spin-button,
@@ -37,10 +38,6 @@
 
 .number-input button.plus:after {
   transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.number-input input[type="number"] {
-  text-align: center;
 }
 
 .number-input.number-input {

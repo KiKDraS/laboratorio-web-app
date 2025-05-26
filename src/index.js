@@ -1,44 +1,20 @@
 import "../scss/main.scss";
+import "./utils/listeners";
 
-import {
-  Counter,
-  decrementCounter,
-  incrementCounter,
-  incrementCounterAsync,
-} from "./components/counter";
+import { renderNavbarCartTotal } from "./components/renderNavbarCartTotal";
+import { renderCart } from "./utils/renderCart";
+import { renderProducts } from "./utils/renderProducts";
+
 import { store } from "./store";
 
-const header = document.getElementById("header");
-const main = document.getElementById("main");
-const footer = document.getElementById("footer");
-
-//Render
-const renderHeader = () => {
-  header.innerHTML = `Soy el header`;
+const start = () => {
+  renderNavbarCartTotal();
+  renderCart();
+  renderProducts();
 };
 
-const renderMain = () => {
-  main.innerHTML = Counter();
-};
 //Actualizar vista con store
-store.subscribe(renderMain);
-
-//Agregar listeners
-main.addEventListener("click", ({ target: { id } }) => {
-  switch (id) {
-    case "increment":
-      incrementCounter();
-      break;
-    case "incrementAsync":
-      incrementCounterAsync();
-      break;
-
-    case "decrement":
-      decrementCounter();
-      break;
-  }
-});
+store.subscribe(start);
 
 //Iniciar App
-// renderHeader();
-// renderMain();
+document.addEventListener("DOMContentLoaded", start);
