@@ -1,3 +1,13 @@
+$bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+
+// Bootstrap
 @import "../node_modules/bootswatch/dist/cerulean/variables";
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootswatch/dist/cerulean/bootswatch";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+// Boilerplate
+@import "./boilerplate/index";
+
+// Components
+@import "./components/index";

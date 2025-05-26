@@ -20,11 +20,6 @@ const renderHeader = () => {
 const renderMain = () => {
   main.innerHTML = Counter();
 };
-
-const renderFooter = () => {
-  footer.innerHTML = `Soy el footer`;
-};
-
 //Actualizar vista con store
 store.subscribe(renderMain);
 
@@ -45,6 +40,5 @@ main.addEventListener("click", ({ target: { id } }) => {
 });
 
 //Iniciar App
-renderHeader();
-renderMain();
-renderFooter();
+// renderHeader();
+// renderMain();
