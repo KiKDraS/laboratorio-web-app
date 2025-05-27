@@ -1,13 +1,9 @@
-import {
-  cartAddOne,
-  cartRemoveOne,
-  cartRemoveProduct,
-} from "../components/cartProduct";
+import { cartAddOne, cartRemoveOne, cartRemoveProduct } from "./cartProduct";
 import {
   productAddOne,
   productAddToCart,
   productRemoveOne,
-} from "../components/productItem";
+} from "./productItem";
 
 document.addEventListener("click", ({ target }) => {
   const actionElement = target.closest("[data-action]");
