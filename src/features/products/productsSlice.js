@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchProducts } from "./productsAPI";
+import { updateProductQuantity } from "../../utils/updateProductQuantity";
 
 const initialState = {
   isLoading: true,
@@ -11,8 +12,6 @@ const initialState = {
 export const getProducts = createAsyncThunk(
   "products/fetchProducts",
   async (API_ENDPOINT) => {
-    console.log(API_ENDPOINT);
-
     try {
       // const response = await fetchProducts(API_ENDPOINT);
       // const data = await response.json();
@@ -28,22 +27,22 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    selectProduct: (state, { payload: product }) => {
-      state.selectProduct = product;
+    setSelectProduct: (state, { payload: productId }) => {
+      state.selectProduct = state.products.find(
+        (item) => item.id === productId
+      );
     },
     addOneToSelectedProduct: (state) => {
-      state.selectProduct = {
-        ...state.selectProduct,
-        quantity: state.selectProduct.quantity + 1,
-      };
+      state.selectProduct.quantity = state.selectProduct.quantity + 1;
+      updateProductQuantity(
+        `${state.selectProduct.id}-modalQuantity`,
+        state.selectProduct.quantity
+      );
     },
     removeOneFromSelectedProduct: (state) => {
-      state.selectProduct = {
-        ...state.selectProduct,
-        quantity: state.selectProduct.quantity + 1,
-      };
+      state.selectProduct.quantity = state.selectProduct.quantity - 1;
     },
-    clearProduct: () => {
+    clearSelectProduct: (state) => {
       state.selectProduct = null;
     },
     setProductsToShow: (state, { payload: query }) => {
@@ -74,10 +73,10 @@ const productsSlice = createSlice({
 });
 
 export const {
-  selectProduct,
+  setSelectProduct,
   addOneToSelectedProduct,
   removeOneFromSelectedProduct,
-  clearProduct,
+  clearSelectProduct,
 } = productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;

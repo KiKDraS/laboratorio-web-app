@@ -1,7 +1,6 @@
 import "../scss/main.scss";
 import "./components/listeners";
 
-import { renderNavbarCartTotal } from "./components/renderNavbarCartTotal";
 import { renderCart } from "./components/renders/renderCart";
 import { renderProducts } from "./components/renders/renderProducts";
 import { API_ENDPOINT } from "./constants/API_ENDPOINT";
@@ -11,7 +10,6 @@ import { getProducts } from "./features/products/productsSlice";
 import { store } from "./store";
 
 const start = () => {
-  renderNavbarCartTotal();
   renderCart();
   renderProducts();
 };

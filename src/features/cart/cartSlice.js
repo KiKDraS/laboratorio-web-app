@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { STORAGE_NAME } from "../../constants/STORAGE_NAME";
-import { updateCartItemOnStorage } from "../../utils/updateCartItemOnStorage";
+import { updateCartOnStorage } from "../../utils/updateCartItemOnStorage";
+import { resetCart } from "../../utils/resetCart";
 
 const initialState = {
   cartItems: [],
@@ -17,51 +18,79 @@ const cartSlice = createSlice({
         localStorage.getItem(STORAGE_NAME.CART) || "[]"
       );
 
-      if (storage.length > 0) {
-        state.amount = storage.reduce((acc, item) => acc + item.amount, 0);
-        state.total = storage.reduce(
-          (acc, item) => acc + item.amount * item.price,
-          0
-        );
-      }
+      state.amount = storage.reduce((acc, item) => acc + item.quantity, 0) || 0;
+      state.total =
+        storage.reduce((acc, item) => acc + item.quantity * item.price, 0) || 0;
+
       state.cartItems = storage;
     },
-    setCartItem: (state, action) => {
-      const newCart = [action.payload, ...state.cartItems];
+    addCartItem: (state, { payload: newProduct }) => {
+      const existingProductIndex = state.cartItems.findIndex(
+        (item) => item.id === newProduct.id
+      );
+
+      const newCart =
+        existingProductIndex !== -1
+          ? state.cartItems.map((item) =>
+              item.id === newProduct.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            )
+          : [newProduct, ...state.cartItems];
+
       localStorage.setItem(STORAGE_NAME.CART, JSON.stringify(newCart));
       state.cartItems = newCart;
     },
     clearCart: (state) => {
-      state.cartItems = [];
+      resetCart(state);
+      localStorage.removeItem(STORAGE_NAME.CART);
     },
     removeCartItem: (state, { payload: itemId }) => {
       const newCart = state.cartItems.filter((item) => item.id !== itemId);
-      localStorage.setItem(STORAGE_NAME.CART, JSON.stringify(newCart));
+
+      if (newCart.length === 0) {
+        resetCart(state);
+        return;
+      }
+
+      updateCartOnStorage(newCart);
       state.cartItems = newCart;
     },
     increaseCartItem: (state, { payload: productToModifyId }) => {
-      const cartItem = state.cartItems.find(
-        (item) => item.id === productToModifyId
+      const newCart = state.cartItems.map((item) =>
+        item.id === productToModifyId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       );
-      const newCartItem = { ...cartItem, amount: cartItem.amount + 1 };
-      updateCartItemOnStorage(newCartItem);
-      cartItem.amount = newCartItem;
+      updateCartOnStorage(newCart);
+      state.cartItems = newCart;
     },
     decreaseCartItem: (state, { payload: productToModifyId }) => {
-      const cartItem = state.cartItems.find(
-        (item) => item.id === productToModifyId
-      );
-      const newCartItem = { ...cartItem, amount: cartItem.amount - 1 };
-      updateCartItemOnStorage(newCartItem);
-      cartItem.amount = newCartItem;
+      const newCart = state.cartItems.map((item) => {
+        if (item.quantity === 1 && item.id === productToModifyId) {
+          return;
+        }
+
+        return item.id === productToModifyId
+          ? { ...item, quantity: item.quantity - 1 }
+          : item;
+      });
+
+      if (!newCart[0]) {
+        resetCart(state);
+        return;
+      }
+
+      updateCartOnStorage(newCart);
+      state.cartItems = newCart;
     },
     calculateCartTotals: (state) => {
       state.amount = state.cartItems.reduce(
-        (acc, item) => acc + item.amount,
+        (acc, item) => acc + item.quantity,
         0
       );
       state.total = state.cartItems.reduce(
-        (acc, item) => acc + item.amount * item.price,
+        (acc, item) => acc + item.quantity * item.price,
         0
       );
     },
@@ -70,7 +99,7 @@ const cartSlice = createSlice({
 
 export const {
   loadCartFromStorage,
-  setCartItems,
+  addCartItem,
   clearCart,
   removeCartItem,
   increaseCartItem,

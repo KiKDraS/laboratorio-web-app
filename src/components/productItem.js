@@ -1,14 +1,19 @@
-export const productItem = ({
-  id,
-  title,
-  img,
-  price,
-  description,
-  quantity,
-}) => {
+import { PRODUCT_ACTIONS } from "./actions/PRODUCT_ACTIONS";
+import { addCartItem, calculateCartTotals } from "../features/cart/cartSlice";
+import {
+  addOneToSelectedProduct,
+  clearSelectProduct,
+  removeOneFromSelectedProduct,
+  setSelectProduct,
+} from "../features/products/productsSlice";
+import { store } from "../store";
+
+export const productItem = ({ id, title, img, price, description }) => {
   return `
         <div class="col-lg-4 col-md-6 mb-4">
-            <article class="card hover-clickable" data-bs-toggle="modal" data-bs-target="#${id}-modal" aria-labelledby="${title}">
+            <article data-action=${
+              PRODUCT_ACTIONS.SELECT_PRODUCT
+            } data-id="${id}" class="card hover-clickable" data-bs-toggle="modal" data-bs-target="#${id}-modal" aria-labelledby="${title}">
                 <figure class="bg-image hover-zoom m-0">
                     <img src="${img}" class="w-100" alt="${title}" />
                     <div class="hover-overlay">
@@ -17,7 +22,7 @@ export const productItem = ({
                 </figure>
                 <div class="card-body">
                     <h3 class="card-title h4 mb-3" id="${title}">${title}</h3>
-                    <p class="mb-3 price fw-bold">$${price}</p>
+                    <p class="mb-3 price fw-bold">$${price.toFixed(2)}</p>
                 </div>
             </article>
         </div>
@@ -28,7 +33,9 @@ export const productItem = ({
                 <div class="modal-content">
                     <header class="modal-header">
                         <h2 id="${id}-modalLabel" class="modal-title h5">${title}</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
+                        <button data-action=${
+                          PRODUCT_ACTIONS.CLEAR_SELECTED_PRODUCT
+                        } type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
                     </header>
 
                     <section class="modal-body" aria-labelledby="${id}-modalLabel">
@@ -45,23 +52,33 @@ export const productItem = ({
                                 <fieldset class="d-flex align-items-center" aria-label="Cantidad"
                                     style="border:0; padding:0; margin:0;">
 
-                                    <button data-action="product-remove-one" data-id="${id}" type="button" class="btn btn-outline-primary me-2" aria-label="Reducir cantidad">
+                                    <button data-action=${
+                                      PRODUCT_ACTIONS.REMOVE_ONE_FROM_SELECTED_PRODUCT
+                                    } type="button" class="btn btn-outline-primary me-2" aria-label="Reducir cantidad">
                                         <i class="bi bi-dash-lg" aria-hidden="true"></i>
                                     </button>
 
                                     <div class="form-outline">
                                         <label for="modalQuantity" class="visually-hidden">Cantidad</label>
-                                        <input id="modalQuantity" min="1" name="quantity" value="${quantity}" type="number" class="form-control" />
+                                        <input  id="${id}-modalQuantity" min="1" name="quantity" value="${
+    store.getState().products.selectProduct?.quantity || 1
+  }" type="number" class="form-control" />
                                     </div>
 
-                                    <button data-action="product-add-one" data-id="${id}" type="button" class="btn btn-outline-primary ms-2" aria-label="Aumentar cantidad">
+                                    <button data-action=${
+                                      PRODUCT_ACTIONS.ADD_ONE_TO_SELECTED_PRODUCT
+                                    } type="button" class="btn btn-outline-primary ms-2" aria-label="Aumentar cantidad">
                                         <i class="bi bi-plus-lg" aria-hidden="true"></i>
                                     </button>
                                 </fieldset>
                             </div>
                             <div class="col-12 col-md-6 d-flex justify-content-end gap-2">
-                                <button data-action="product-add-to-cart" data-id="${id}" type="submit" class="btn btn-success">Añadir al carrito</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button data-action=${
+                                  PRODUCT_ACTIONS.ADD_TO_CART
+                                } data-id="${id}" type="submit" class="btn btn-success" data-bs-dismiss="modal">Añadir al carrito</button>
+                                <button data-action=${
+                                  PRODUCT_ACTIONS.CLEAR_SELECTED_PRODUCT
+                                } type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </form>
                     </footer>
@@ -71,9 +88,20 @@ export const productItem = ({
     `;
 };
 
-export const productAddOne = (id) =>
-  alert(`Sumar uno al producto - product ${id}`);
-export const productRemoveOne = (id) =>
-  alert(`Restar uno al producto - product ${id}`);
-export const productAddToCart = (id) =>
-  alert(`Añadir producto al carrito - product ${id}`);
+export const selectProduct = (id) => store.dispatch(setSelectProduct(id));
+
+export const productAddOne = () => store.dispatch(addOneToSelectedProduct());
+
+export const productRemoveOne = () =>
+  store.dispatch(removeOneFromSelectedProduct());
+
+export const productAddToCart = () => {
+  const { selectProduct } = store.getState().products;
+  if (!selectProduct) return;
+
+  store.dispatch(addCartItem(selectProduct));
+  store.dispatch(calculateCartTotals());
+  store.dispatch(clearSelectProduct());
+};
+
+export const clearSelection = () => store.dispatch(clearSelectProduct());
