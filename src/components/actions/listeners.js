@@ -1,15 +1,15 @@
-import { CART_ACTIONS } from "./actions/CART_ACTIONS";
-import { PAYMENT_ACTIONS } from "./actions/PAYMENT_ACTIONS";
-import { PRODUCT_ACTIONS } from "./actions/PRODUCT_ACTIONS";
-import { clearCartItems, clearPayment } from "./cartButtons";
-import { cartAddOne, cartRemoveOne, cartRemoveProduct } from "./cartProduct";
+import { CART_ACTIONS } from "./CART_ACTIONS";
+import { PAYMENT_ACTIONS } from "./PAYMENT_ACTIONS";
+import { PRODUCT_ACTIONS } from "./PRODUCT_ACTIONS";
+import { clearCartItems, clearPayment } from "../cartButtons";
+import { cartAddOne, cartRemoveOne, cartRemoveProduct } from "../cartProduct";
 import {
   clearSelection,
-  productAddOne,
   productAddToCart,
-  productRemoveOne,
   selectProduct,
-} from "./productItem";
+} from "../productItem";
+import { setProductsToShow } from "../../features/products/productsSlice";
+import { store } from "../../store";
 
 document.addEventListener("click", ({ target }) => {
   const actionElement = target.closest("[data-action]");
@@ -35,14 +35,6 @@ document.addEventListener("click", ({ target }) => {
       selectProduct(productId);
       break;
 
-    case PRODUCT_ACTIONS.ADD_ONE_TO_SELECTED_PRODUCT:
-      productAddOne(productId);
-      break;
-
-    case PRODUCT_ACTIONS.REMOVE_ONE_FROM_SELECTED_PRODUCT:
-      productRemoveOne(productId);
-      break;
-
     case PRODUCT_ACTIONS.ADD_TO_CART:
       productAddToCart(productId);
       break;
@@ -63,4 +55,8 @@ document.addEventListener("click", ({ target }) => {
 
 document.addEventListener("submit", (e) => {
   e.preventDefault();
+});
+
+document.addEventListener("input", ({ target: { value } }) => {
+  store.dispatch(setProductsToShow(value));
 });

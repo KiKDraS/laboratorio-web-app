@@ -3,6 +3,7 @@ import { productItem } from "../productItem";
 
 export const renderProducts = () => {
   const products = store.getState().products.productsToShow;
+  console.log(products);
 
   if (products.length === 0) {
     document.getElementById("productsContainer").innerHTML =

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "./productsAPI";
-import { updateProductQuantity } from "../../utils/updateProductQuantity";
+import { API_ENDPOINT } from "../../constants/API_ENDPOINT";
 
 const initialState = {
   isLoading: true,
@@ -11,12 +10,11 @@ const initialState = {
 
 export const getProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (API_ENDPOINT) => {
+  async () => {
     try {
-      // const response = await fetchProducts(API_ENDPOINT);
-      // const data = await response.json();
-      // return data;
-      return await fetchProducts(API_ENDPOINT);
+      const response = await fetch(API_ENDPOINT);
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error("Failed to fetch products:", error);
     }
@@ -31,16 +29,6 @@ const productsSlice = createSlice({
       state.selectProduct = state.products.find(
         (item) => item.id === productId
       );
-    },
-    addOneToSelectedProduct: (state) => {
-      state.selectProduct.quantity = state.selectProduct.quantity + 1;
-      updateProductQuantity(
-        `${state.selectProduct.id}-modalQuantity`,
-        state.selectProduct.quantity
-      );
-    },
-    removeOneFromSelectedProduct: (state) => {
-      state.selectProduct.quantity = state.selectProduct.quantity - 1;
     },
     clearSelectProduct: (state) => {
       state.selectProduct = null;
@@ -72,11 +60,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const {
-  setSelectProduct,
-  addOneToSelectedProduct,
-  removeOneFromSelectedProduct,
-  clearSelectProduct,
-} = productsSlice.actions;
+export const { setSelectProduct, setProductsToShow, clearSelectProduct } =
+  productsSlice.actions;
 
 export const productsReducer = productsSlice.reducer;
