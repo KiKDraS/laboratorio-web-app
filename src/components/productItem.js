@@ -5,6 +5,7 @@ import {
   setSelectProduct,
 } from "../features/products/productsSlice";
 import { store } from "../store";
+import { alertMsg } from "./alertMsg";
 
 export const productItem = ({ id, title, image, price, description }) => {
   return `
@@ -18,7 +19,7 @@ export const productItem = ({ id, title, image, price, description }) => {
                 </figure>
                 <div class="card-body">
                     <h3 class="card-title h4 mb-3" id="${title}">${title}</h3>
-                    <p class="mb-3 price fw-bold">$${price}</p>
+                    <span class="mb-3 price fw-bold">$${price}</span>
                 </div>
             </article>
         </div>
@@ -33,18 +34,18 @@ export const productItem = ({ id, title, image, price, description }) => {
                     </header>
 
                     <section class="modal-body" aria-labelledby="${id}-modalLabel">
-                        <figure class="text-center">
-                            <image src="${image}" class="image-fluid mb-3" alt="Vista detallada del producto" loading="lazy" />
+                        <figure class="text-center p-4">
+                            <image src="${image}" class="image-fluid mb-3 w-100" alt="Vista detallada del producto" loading="lazy" />
                             <figcaption class="visually-hidden">Imagen ampliada del producto</figcaption>
                         </figure>
                         <p>${description}</p>
                     </section>
 
-                    <footer class="modal-footer row g-3">
-                          <div class="col-12 d-flex justify-content-end gap-2">
-                              <button data-action=${PRODUCT_ACTIONS.ADD_TO_CART} data-id="${id}" type="submit" class="btn btn-success" data-bs-dismiss="modal">Añadir al carrito</button>
-                              <button data-action=${PRODUCT_ACTIONS.CLEAR_SELECTED_PRODUCT} type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                          </div>
+                    <footer class="w-100 m-auto modal-footer row g-3">
+                        <div class="col-12 d-flex justify-content-between gap-2">
+                            <span class="ps-2 price fw-bold fs-4 text-dark">$${price}</span>
+                            <button data-action=${PRODUCT_ACTIONS.ADD_TO_CART} data-id="${id}" type="button" class="btn btn-success" data-bs-dismiss="modal">Añadir al carrito</button>
+                        </div>
                     </footer>
                 </div>
             </div>
@@ -52,7 +53,8 @@ export const productItem = ({ id, title, image, price, description }) => {
     `;
 };
 
-export const selectProduct = (id) => store.dispatch(setSelectProduct(id));
+export const selectProduct = (id) =>
+  store.dispatch(setSelectProduct(Number(id)));
 
 export const productAddToCart = () => {
   const { selectProduct } = store.getState().products;
@@ -61,6 +63,7 @@ export const productAddToCart = () => {
   store.dispatch(addCartItem(selectProduct));
   store.dispatch(calculateCartTotals());
   store.dispatch(clearSelectProduct());
+  alertMsg("Producto agregado al carrito");
 };
 
 export const clearSelection = () => store.dispatch(clearSelectProduct());

@@ -14,7 +14,8 @@ export const getProducts = createAsyncThunk(
     try {
       const response = await fetch(API_ENDPOINT);
       const data = await response.json();
-      return data;
+
+      return data.map((el) => ({ ...el, quantity: 1 }));
     } catch (error) {
       console.error("Failed to fetch products:", error);
     }

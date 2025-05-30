@@ -2,12 +2,13 @@ import { clearCart } from "../features/cart/cartSlice";
 import { store } from "../store";
 import { CART_ACTIONS } from "./actions/CART_ACTIONS";
 import { PAYMENT_ACTIONS } from "./actions/PAYMENT_ACTIONS";
+import { alertMsg } from "./alertMsg";
 
 export const cartButtons = () => {
   return `
     <button data-action=${PAYMENT_ACTIONS.CLEAR_PAYMENT}
         class="btn btn-success d-flex justify-content-center align-items-center gap-2"
-        aria-label="Finalizar compra">
+        aria-label="Finalizar compra" data-bs-dismiss="offcanvas">
         <span>Finalizar compra</span>
         <i class="bi bi-cart-check" aria-hidden="true"></i>
     </button>
@@ -24,5 +25,5 @@ export const clearCartItems = () => {
 
 export const clearPayment = () => {
   store.dispatch(clearCart());
-  alert("Compra finalizada con éxito. ¡Gracias por tu compra!");
+  alertMsg("Compra finalizada con éxito. ¡Gracias por tu compra!");
 };

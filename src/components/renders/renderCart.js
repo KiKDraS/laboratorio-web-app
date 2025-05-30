@@ -4,8 +4,7 @@ import { renderNavbarCartTotal } from "../renderNavbarCartTotal";
 import { renderCartButtons } from "./renderCartButtons";
 
 export const renderCart = () => {
-  const cart = store.getState().cart.cartItems;
-  const total = store.getState().cart.total;
+  const { cartItems: cart, total } = store.getState().cart;
 
   renderNavbarCartTotal();
 
@@ -26,7 +25,7 @@ export const renderCart = () => {
 
 const showTotal = (total) => {
   const totalContainer = document.getElementById("totalContainer");
-  totalContainer.children[1].textContent = `$${total.toFixed(2)}`;
+  totalContainer.children[1].textContent = `$${total}`;
 
   if (total === 0) {
     totalContainer.classList.add("d-none");

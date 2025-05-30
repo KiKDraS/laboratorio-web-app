@@ -2,8 +2,7 @@ import { store } from "../../store";
 import { productItem } from "../productItem";
 
 export const renderProducts = () => {
-  const products = store.getState().products.productsToShow;
-  console.log(products);
+  const { productsToShow: products } = store.getState().products;
 
   if (products.length === 0) {
     document.getElementById("productsContainer").innerHTML =

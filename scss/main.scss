@@ -1,4 +1,12 @@
 $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+$position-values: (
+  0: 0,
+  1: 1%,
+  5: 5%,
+  10: 10%,
+  50: 50%,
+  100: 100%,
+);
 
 // Bootstrap
 @import "../node_modules/bootswatch/dist/cerulean/variables";

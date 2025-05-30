@@ -9,17 +9,19 @@ import { CART_ACTIONS } from "./actions/CART_ACTIONS";
 
 export const cartProduct = ({ id, title, image, price, quantity }) => {
   return `
-    <article id=${id} class="d-flex align-items-center mb-5" aria-labelledby=${title}>
-        <figure class="flex-shrink-0 w-25 m-0">
-            <image src=${image} class="image-fluid" alt=${title} loading="lazy" />
+    <article id=${id} class="d-flex align-items-center mb-5 ps-2 pe-2" aria-labelledby=${title}>
+        <figure class="flex-shrink-0 w-25 m-0 p-3">
+            <image src=${image} class="image-fluid w-100" alt=${title} loading="lazy" />
         </figure>
         <div class="flex-grow-1 ms-1">
-          <h3 id=${title} class="text-primary h5">${title}</h3>
+          <h3 id=${title} class="text-primary text-pretty h5">${title}</h3>
           <p class="price fw-bold">$${price}</p>
 
           <fieldset class="d-flex align-items-center" aria-label="Cantidad del producto"
               style="border:0; padding:0; margin:0;">
-              <span class="fw-bold me-2 pe-3">$${price * quantity}</span>
+              <span class="fw-bold me-2 pe-3">$${(price * quantity).toFixed(
+                2
+              )}</span>
               <div class="def-number-input number-input d-flex align-items-center justify-content-center">
                   <button data-action=${
                     CART_ACTIONS.REMOVE_ONE
@@ -41,16 +43,16 @@ export const cartProduct = ({ id, title, image, price, quantity }) => {
 };
 
 export const cartAddOne = (id) => {
-  store.dispatch(increaseCartItem(id));
+  store.dispatch(increaseCartItem(Number(id)));
   store.dispatch(calculateCartTotals());
 };
 
 export const cartRemoveOne = (id) => {
-  store.dispatch(decreaseCartItem(id));
+  store.dispatch(decreaseCartItem(Number(id)));
   store.dispatch(calculateCartTotals());
 };
 
 export const cartRemoveProduct = (id) => {
-  store.dispatch(removeCartItem(id));
+  store.dispatch(removeCartItem(Number(id)));
   store.dispatch(calculateCartTotals());
 };
