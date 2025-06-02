@@ -6,32 +6,24 @@ import { renderCartButtons } from "./renderCartButtons";
 
 export const renderCart = () => {
   const { cartItems: cart, total } = store.getState().cart;
+  const cartContainer = document.getElementById("cartContainer");
+  const isEmpty = cart.length === 0;
 
   renderNavbarCartTotal();
 
-  if (cart.length === 0) {
-    document.getElementById("cartContainer").innerHTML = emptyCart();
-    showTotal(0);
-    renderCartButtons(false);
-    return;
-  }
-
-  document.getElementById("cartContainer").innerHTML = cart
-    .map((el) => cartProduct(el))
-    .join("");
+  cartContainer.innerHTML = isEmpty
+    ? emptyCart()
+    : cart.map(cartProduct).join("");
   showTotal(total);
-  renderCartButtons(true);
+  renderCartButtons(!isEmpty);
 };
 
 const showTotal = (total) => {
   const totalContainer = document.getElementById("totalContainer");
-  totalContainer.children[1].textContent = `$${total}`;
+  const totalElement = totalContainer.children[1];
+  const shouldShow = total !== 0;
 
-  if (total === 0) {
-    totalContainer.classList.add("d-none");
-    totalContainer.classList.remove("d-flex");
-  } else {
-    totalContainer.classList.remove("d-none");
-    totalContainer.classList.add("d-flex");
-  }
+  totalElement.textContent = `$${total}`;
+  totalContainer.classList.toggle("d-none", !shouldShow);
+  totalContainer.classList.toggle("d-flex", shouldShow);
 };

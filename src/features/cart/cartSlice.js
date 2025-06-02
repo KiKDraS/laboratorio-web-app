@@ -85,9 +85,10 @@ const cartSlice = createSlice({
       state.cartItems = newCart;
     },
     calculateCartTotals: (state) => {
-      state.amount = state.cartItems
-        .reduce((acc, item) => acc + item.quantity, 0)
-        .toFixed(2);
+      state.amount = state.cartItems.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+      );
       state.total = state.cartItems
         .reduce((acc, item) => acc + item.quantity * item.price, 0)
         .toFixed(2);
