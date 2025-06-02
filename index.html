@@ -7,14 +7,67 @@
 
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <title>Laboratorio de Aplicaciones Web Cliente</title>
-  <script type="module" crossorigin src="/laboratorio-web-app/assets/index-f1qt5lWr.js"></script>
-  <link rel="stylesheet" crossorigin href="/laboratorio-web-app/assets/index-DmzEkw8j.css">
+  <script type="module" crossorigin src="/laboratorio-web-app/assets/index-l5K1xGwg.js"></script>
+  <link rel="stylesheet" crossorigin href="/laboratorio-web-app/assets/index-CaU631zh.css">
 </head>
 
-<body>
-    <header id="header"></header>
-    <section id="main"></section>
-    <footer id="footer"></footer>
+<body class="d-flex flex-column">
+    <header id="header" aria-label="Cabecera principal">
+        <nav class="navbar bg-dark ps-3 pe-3 justify-content-between" aria-label="Navegación principal">
+            <a class="navbar-brand" href="#" aria-label="Inicio">
+                <h1>Mi tienda</h1>
+            </a>
+            <!-- Botón del carrito -->
+            <button id="headerCartBtn" type="button" class="navbar-brand btn btn-outline position-relative"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+                aria-label="Carrito de compras">
+                <i class="bi bi-cart4 text-light fs-4" aria-hidden="true"></i>
+            </button>
+        </nav>
+    </header>
+
+    <aside class="offcanvas offcanvas-end d-flex flex-column pb-3" tabindex="-1" id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel">
+
+        <!-- Cabecera del carrito -->
+        <header class="offcanvas-header">
+            <h2 id="offcanvasRightLabel" class="offcanvas-title h4">Carrito</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar carrito"></button>
+        </header>
+
+        <!-- Lista de productos en el carrito -->
+        <section id="cartContainer" class="main-content mt-3" aria-label="Productos en el carrito"></section>
+
+        <!-- Acciones del carrito -->
+        <footer class="mt-auto ps-4 pe-4">
+            <div id="totalContainer" class="d-none justify-content-between mb-4">
+                <span class="mb-2 fs-4">Total</span>
+                <span class="mb-2 fs-4 fw-bold">$0</span>
+            </div>
+            <div id="cartButtons" class="d-flex justify-content-center gap-4 ps-4 pe-4 mt-auto"></div>
+        </footer>
+    </aside>
+
+    <main id="main" class="position-relative main-content p-3 d-flex flex-column gap-5">
+        <!-- Búsqueda -->
+        <form role="search" class="input-group rounded">
+            <label for="searchInput" class="visually-hidden">Buscar productos</label>
+            <input type="search" id="searchInput" class="form-control rounded" placeholder="Buscar"
+                aria-label="Buscar productos" />
+            <button type="submit" class="input-group-text border-0" aria-label="Buscar">
+                <i class="bi bi-search" aria-hidden="true"></i>
+            </button>
+        </form>
+
+        <!-- Listado de productos -->
+        <section id="productsContainer" class="container m-auto row" aria-label="Productos disponibles">
+        </section>
+    </main>
+
+    <footer class="d-flex justify-content-center p-2 bg-black">
+        <p class="text-white m-0">&copy; <time datetime="2025">2025</time> Mi Tienda. Todos los derechos reservados.
+        </p>
+    </footer>
 
 </body>
 
