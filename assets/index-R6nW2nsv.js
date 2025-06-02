@@ -17,7 +17,7 @@ var Qe=Object.defineProperty;var Ze=(e,t,r)=>t in e?Qe(e,t,{enumerable:!0,config
   `,ar=()=>{b.dispatch(He())},cr=()=>{b.dispatch(He()),Ge("Compra finalizada con éxito. ¡Gracias por tu compra!")},sr=({id:e,title:t,image:r,price:n,quantity:i})=>`
     <article id=${e} class="d-flex align-items-center mb-5 ps-2 pe-2" aria-labelledby=${t}>
         <figure class="flex-shrink-0 w-25 m-0 p-3">
-            <image src=${r} class="image-fluid w-100" alt=${t} loading="lazy" />
+            <image src=${r} class="image-fluid w-100" alt=${t} loading="lazy" >
         </figure>
         <div class="flex-grow-1 ms-1">
           <h3 id=${t} class="text-primary text-pretty h5">${t}</h3>
@@ -41,7 +41,7 @@ var Qe=Object.defineProperty;var Ze=(e,t,r)=>t in e?Qe(e,t,{enumerable:!0,config
         <div class="col-lg-3 col-md-4 mb-4">
             <article data-action=${j.SELECT_PRODUCT} data-id="${e}" class="card hover-clickable h-100" data-bs-toggle="modal" data-bs-target="#${e}-modal" aria-labelledby="${t}">
                 <figure class="bg-image hover-zoom m-0 p-4 h-100">
-                    <image src="${r}" class="w-100" alt="${t}" />
+                    <image src="${r}" class="w-100" alt="${t}">
                     <div class="hover-overlay">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </div>
@@ -64,7 +64,7 @@ var Qe=Object.defineProperty;var Ze=(e,t,r)=>t in e?Qe(e,t,{enumerable:!0,config
 
                     <section class="modal-body" aria-labelledby="${e}-modalLabel">
                         <figure class="text-center p-4">
-                            <image src="${r}" class="image-fluid mb-3 w-100" alt="Vista detallada del producto" loading="lazy" />
+                            <image src="${r}" class="image-fluid mb-3 w-100" alt="Vista detallada del producto" loading="lazy">
                             <figcaption class="visually-hidden">Imagen ampliada del producto</figcaption>
                         </figure>
                         <p>${i}</p>
