@@ -6,6 +6,7 @@ const initialState = {
   products: [],
   productsToShow: [],
   selectProduct: null,
+  error: false,
 };
 
 export const getProducts = createAsyncThunk(
@@ -49,14 +50,17 @@ const productsSlice = createSlice({
     builder
       .addCase(getProducts.pending, (state) => {
         state.isLoading = true;
+        state.error = false;
       })
       .addCase(getProducts.fulfilled, (state, { payload: products }) => {
         state.isLoading = false;
+        state.error = false;
         state.products = products;
         state.productsToShow = products;
       })
       .addCase(getProducts.rejected, (state) => {
         state.isLoading = false;
+        state.error = true;
       });
   },
 });

@@ -1,5 +1,6 @@
 import { store } from "../../store";
 import { cartProduct } from "../cartProduct";
+import { emptyCart } from "../emptyCart";
 import { renderNavbarCartTotal } from "../renderNavbarCartTotal";
 import { renderCartButtons } from "./renderCartButtons";
 
@@ -9,8 +10,7 @@ export const renderCart = () => {
   renderNavbarCartTotal();
 
   if (cart.length === 0) {
-    document.getElementById("cartContainer").innerHTML =
-      "<p>Your cart is empty</p>";
+    document.getElementById("cartContainer").innerHTML = emptyCart();
     showTotal(0);
     renderCartButtons(false);
     return;
