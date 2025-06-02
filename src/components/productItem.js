@@ -12,7 +12,7 @@ export const productItem = ({ id, title, image, price, description }) => {
         <div class="col-lg-3 col-md-4 mb-4">
             <article data-action=${PRODUCT_ACTIONS.SELECT_PRODUCT} data-id="${id}" class="card hover-clickable h-100" data-bs-toggle="modal" data-bs-target="#${id}-modal" aria-labelledby="${title}">
                 <figure class="bg-image hover-zoom m-0 p-4 h-100">
-                    <image src="${image}" class="w-100" alt="${title}" />
+                    <image src="${image}" class="w-100" alt="${title}">
                     <div class="hover-overlay">
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </div>
@@ -35,7 +35,7 @@ export const productItem = ({ id, title, image, price, description }) => {
 
                     <section class="modal-body" aria-labelledby="${id}-modalLabel">
                         <figure class="text-center p-4">
-                            <image src="${image}" class="image-fluid mb-3 w-100" alt="Vista detallada del producto" loading="lazy" />
+                            <image src="${image}" class="image-fluid mb-3 w-100" alt="Vista detallada del producto" loading="lazy">
                             <figcaption class="visually-hidden">Imagen ampliada del producto</figcaption>
                         </figure>
                         <p>${description}</p>

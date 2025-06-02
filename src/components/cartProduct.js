@@ -11,7 +11,7 @@ export const cartProduct = ({ id, title, image, price, quantity }) => {
   return `
     <article id=${id} class="d-flex align-items-center mb-5 ps-2 pe-2" aria-labelledby=${title}>
         <figure class="flex-shrink-0 w-25 m-0 p-3">
-            <image src=${image} class="image-fluid w-100" alt=${title} loading="lazy" />
+            <image src=${image} class="image-fluid w-100" alt=${title} loading="lazy" >
         </figure>
         <div class="flex-grow-1 ms-1">
           <h3 id=${title} class="text-primary text-pretty h5">${title}</h3>
