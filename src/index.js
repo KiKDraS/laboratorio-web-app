@@ -1,4 +1,5 @@
 import "../scss/main.scss";
+import "bootstrap/dist/js/bootstrap.bundle.js";
 import "./components/actions/listeners";
 
 import { renderCart } from "./components/renders/renderCart";
