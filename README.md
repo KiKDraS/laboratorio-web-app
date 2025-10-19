@@ -4,13 +4,13 @@ Proyecto de e-commerce creado como parte del programa de estudio de la carrera
 **Tecnicatura Superior en Desarrollo de Software**.
 
 <p align="left">
-  <a href="https://kikdras.github.io/laboratorio-web-app/" target="_blank">
+  <a href="https://kikdras.github.io/laboratorio-web-app/" target="_blank" title="Live Demo">
     <img src="https://img.shields.io/badge/Live%20Demo-Ver%20App-brightgreen?style=for-the-badge&logo=githubpages" alt="Live Demo">
   </a>
-  &nbsp;&nbsp; <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fkikdras.github.io%2Flaboratorio-web-app%2F" target="_blank">
+<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fkikdras.github.io%2Flaboratorio-web-app%2F" target="_blank" title="W3C Validation">
     <img src="https://img.shields.io/badge/w3c-validation-yellow?style=for-the-badge&logo=w3c" alt="W3C HTML Validation">
   </a>
-  &nbsp;&nbsp; <a href="https://www.docker.com/" target="_blank">
+<a href="https://www.docker.com/" target="_blank" title="Docker Compatible">
     <img src="https://img.shields.io/badge/Docker-Compatible-blue?style=for-the-badge&logo=docker" alt="Docker Compatible">
   </a>
 </p>
