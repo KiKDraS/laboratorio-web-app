@@ -4,15 +4,15 @@ Proyecto de e-commerce creado como parte del programa de estudio de la carrera
 **Tecnicatura Superior en Desarrollo de Software**.
 
 <p align="left">
-  <a href="https://kikdras.github.io/laboratorio-web-app/" target="_blank">
-    <img src="https://img.shields.io/badge/Live_Demo-Ver_App-brightgreen?style=for-the-badge&logo=githubpages" alt="Live Demo">
-  </a>
-  <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fkikdras.github.io%2Flaboratorio-web-app%2F" target="_blank">
-    <img src="https://img.shields.io/w3c-validation/v/https/kikdras.github.io/laboratorio-web-app/?style=for-the-badge&logo=w3c" alt="W3C HTML Validation">
-  </a>
-  <a href="#-ejecuci%C3%B3n-local-con-docker" target="_blank">
-    <img src="https://img.shields.io/badge/Docker-Compatible-blue?style=for-the-badge&logo=docker" alt="Docker Compatible">
-  </a>
+  <a href="https://kikdras.github.io/laboratorio-web-app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-Ver_App-brightgreen?style=for-the-badge&logo=githubpages" alt="Live Demo">
+  </a>
+  &nbsp;&nbsp;   <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fkikdras.github.io%2Flaboratorio-web-app%2F" target="_blank">
+    <img src="https://img.shields.io/badge/w3c-validation-yellow?style=for-the-badge&logo=w3c" alt="W3C HTML Validation">
+  </a>
+  &nbsp;&nbsp;   <a href="https://www.docker.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Docker-Compatible-blue?style=for-the-badge&logo=docker" alt="Docker Compatible">
+  </a>
 </p>
 
 ---
