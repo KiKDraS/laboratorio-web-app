@@ -102,7 +102,7 @@ controlado.
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone [https://github.com/KiKDraS/laboratorio-web-app.git](https://github.com/KiKDraS/laboratorio-web-app.git)
+    git clone https://github.com/KiKDraS/laboratorio-web-app.git
     ```
 
     ```bash
