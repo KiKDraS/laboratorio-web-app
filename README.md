@@ -103,7 +103,6 @@ controlado.
 
     ```bash
     git clone [https://github.com/KiKDraS/laboratorio-web-app.git](https://github.com/KiKDraS/laboratorio-web-app.git)
-    cd laboratorio-web-app
     ```
 
     ```bash
