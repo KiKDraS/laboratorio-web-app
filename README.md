@@ -34,10 +34,15 @@ Este proyecto fue construido utilizando:
 
 ## 🎯 Objetivos del Proyecto
 
-La consigna principal fue la creación de un e-commerce funcional aplicando la
-lógica de negocio necesaria y respetando los siguientes requisitos.
+Este proyecto se desarrolló en dos fases, cumpliendo con las consignas de dos
+materias de la tecnicatura:
 
-### 📋 Requisitos y Lógica de Negocio
+### 1. Laboratorio de Aplicaciones Web Cliente
+
+La consigna inicial fue la creación de un e-commerce funcional. Esto implicó
+aplicar la lógica de negocio necesaria y cumplir con los siguientes requisitos:
+
+#### 📋 Requisitos y Lógica de Negocio (E-commerce)
 
 - [x] Diseño responsivo y consistente.
 - [x] Respeto de políticas de privacidad.
@@ -51,6 +56,22 @@ lógica de negocio necesaria y respetando los siguientes requisitos.
 - [x] Botón "Finalizar Compra" que limpia el carrito y el `localStorage`.
 - [x] Botón "Vaciar" que limpia el carrito y el `localStorage`.
 - [x] Barra de búsqueda por nombre con filtrado en tiempo real.
+
+### 2. Ingeniería del Software ⚙️
+
+En una etapa posterior, se utilizó este proyecto de e-commerce como base para
+cumplir con la consigna de la materia **Ingeniería del Software**.
+
+El objetivo de este trabajo práctico era aplicar un flujo de trabajo completo de
+DevOps, demostrando la capacidad para:
+
+- Reforzar el manejo del control de versiones con **Git** y plataformas remotas.
+- Comprender el **ciclo de vida completo de un contenedor** en Docker (desde la
+  imagen base hasta la ejecución).
+- Integrar una aplicación funcional dentro de un **entorno contenerizado**
+  reproducible.
+- **Documentar el proceso técnico** y los comandos empleados en un `README.md`
+  profesional.
 
 ---
 
@@ -82,6 +103,10 @@ controlado.
 
     ```bash
     git clone [https://github.com/KiKDraS/laboratorio-web-app.git](https://github.com/KiKDraS/laboratorio-web-app.git)
+    cd laboratorio-web-app
+    ```
+
+    ```bash
     cd laboratorio-web-app
     ```
 
